@@ -1,0 +1,4 @@
+This coursework was completed at the end of my Software Concepts and Efficiency course, which covered data structures and algorithms. 
+The assignment was to complete 6 functions within the provided code representation of the Delhi Metro system.
+As of right now, Tasks 1 through 5 are working, but I still need to tweak Task 6.
+Run the Main java file with the provided .txt file to get the list of lines and stations.
