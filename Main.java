@@ -1,6 +1,5 @@
 //CSCM12J coursework
 //name: Allie Griffin
-//student id: 2148000
 
 import java.util.HashMap;
 import java.util.ArrayList;
