@@ -186,47 +186,32 @@ class Metro
 		
 		Station origin = getStation(a);
 		Station destination = getStation(b);
-		ArrayList<ArrayList<Station>> allPaths = new ArrayList<>();
-		LinkedList<Station> q = new LinkedList<>();
-		ArrayList<Station> path = new ArrayList<>();
-		HashMap<Station, Station> previousStation = new HashMap<>();
-		/**
-		//set all stations to unvisited by default
-		for(Station s : this._stations) {
-			s.setUnvisited();
-		}
+		if (origin == null || destination == null)
+			System.out.println(x:"Station(s) not found! Stopping shortest path!")
+		ArrayList<ArrayList<Station>> allPaths = new ArrayList<ArrayList<Station>>();
+		ArrayList<Station> path = new ArrayList<Station>();
+		allPathsRec(origin, destination, current, result);
+		return result;
+	}
 
-		origin.setVisited();
-		path.add(origin);
-		q.add(origin);
-
-		while(!q.isEmpty()) {
-			Station v = q.get(0);
-			q.remove(0);
-			v.setVisited();
-
-			for(Station w : v.neighbourStations()) {
-				if(!w.hasBeenVisited()) {
-					q.add(w);
-					w.setVisited();
-					previousStation.put(w, v);
-					if(w.equals(destination)) {
-						Station route = destination;
-						while (route != null) {
-							path.add(route);
-							route = previousStation.get(route);
-						}
-						allPaths.add(path);
-						w.setUnvisited();
-						path.remove(path.size() - 1);
-						q.clear();
-					}
-				}
-				v.setUnvisited();
+	void allPathsRec(Station a, Station b, ArrayList<Station> current, ArrayList<ArrayList<Station>> result)
+	{	
+		if (a.hasBeenVisited())
+			return;
+		a.setVisited();
+		current.add(a);
+		if(a == b)
+			{
+				result.add(new ArrayList<Station>(current));
+				current.remove(current.size()-1);
+				a.setUnvisited();
+				return;
 			}
-		}
-		**/
-		return allPaths;
+		ArrayList<Station> neighbors = a.neighborStations();
+		for (Station s:neighbors)
+			allPathsRec(origin, destination, current, result);
+		current.remove(current.size()-1);
+		a.setUnvisited();
 		
 	}
 	
